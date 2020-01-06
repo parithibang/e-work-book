@@ -20,3 +20,8 @@ explain:
 .PHONY: run
 run: ## Run the beggo application in  http://localhost:8080
 	bee run
+
+.PHONY: install
+install: ## install Beego
+	go get github.com/astaxie/beego
+	go get github.com/beego/bee
