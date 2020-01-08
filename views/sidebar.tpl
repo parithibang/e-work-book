@@ -44,10 +44,10 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><img src="/static/img/user.png" class="img-circle" alt="Avatar"> <span>Samuel</span> <i class="icon-submenu lnr lnr-chevron-down"></i></a>
 							<ul class="dropdown-menu">
-								<li><a href="#"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
+								<li><a href="profile"><i class="lnr lnr-user"></i> <span>My Profile</span></a></li>
 								<li><a href="#"><i class="lnr lnr-envelope"></i> <span>Message</span></a></li>
 								<li><a href="#"><i class="lnr lnr-cog"></i> <span>Settings</span></a></li>
-								<li><a href="#"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
+								<li><a href="logout"><i class="lnr lnr-exit"></i> <span>Logout</span></a></li>
 							</ul>
 						</li>
 						<!-- <li>
@@ -63,24 +63,24 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="index.html" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
-						<li><a href="elements.html" class=""><i class="lnr lnr-code"></i> <span>Elements</span></a></li>
-						<li><a href="charts.html" class=""><i class="lnr lnr-chart-bars"></i> <span>Charts</span></a></li>
-						<li><a href="panels.html" class=""><i class="lnr lnr-cog"></i> <span>Panels</span></a></li>
-						<li><a href="notifications.html" class=""><i class="lnr lnr-alarm"></i> <span>Notifications</span></a></li>
-						<li>
-							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Pages</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
+						<li><a href="home" {{if .index}}class="active"{{end}}><i class="lnr lnr-home"></i> <span>Home</span></a></li>
+						<li><a href="search" {{if .search}}class="active"{{end}}><i class="lnr lnr-code"></i> <span>Search</span></a></li>
+                        <li><a href="employees" {{if .employees}}class="active"{{end}}><i class="lnr lnr-user"></i> <span>Employees</span></a></li>
+						<li><a href="teams" {{if .teams}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
+						<li><a href="pod" {{if .pod}}class="active"{{end}}><i class="lnr lnr-shirt"></i> <span>POD</span></a></li>
+						<li><a href="project" {{if .project}}class="active"{{end}}><i class="lnr lnr-diamond"></i> <span>Project</span></a></li>
+						<!-- 
+                        <li>
+							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Admin</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
 							<div id="subPages" class="collapse ">
 								<ul class="nav">
-									<li><a href="page-profile.html" class="">Profile</a></li>
-									<li><a href="page-login.html" class="">Login</a></li>
-									<li><a href="page-lockscreen.html" class="">Lockscreen</a></li>
+									<li><a href="Employees" class="">Employees</a></li>
+									<li><a href="Teams" class="">Teams</a></li>
+									<li><a href="POD" class="">POD</a></li>
+                                    <li><a href="Project" class="">Project</a></li>
 								</ul>
 							</div>
-						</li>
-						<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
-						<li><a href="typography.html" class=""><i class="lnr lnr-text-format"></i> <span>Typography</span></a></li>
-						<li><a href="icons.html" class=""><i class="lnr lnr-linearicons"></i> <span>Icons</span></a></li>
+						</li>-->
 					</ul>
 				</nav>
 			</div>
