@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"e-work-book/controllers"
+	"github.com/aravindkumaremis/e-work-book/controllers"
 
 	"github.com/astaxie/beego"
 )
