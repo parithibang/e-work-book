@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// Model Struct
+// Users Struct
 type Users struct {
 	Id      int
 	Name    string    `orm:"size(100)"`
