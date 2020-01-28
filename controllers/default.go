@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"github.com/aravindkumaremis/e-work-book/models"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
 )
 
 // MainController doc
@@ -53,6 +55,15 @@ func (c *MainController) Pod() {
 	c.ActiveContent("pod")
 	c.Data["Website"] = "eWorkBook"
 	c.Data["Email"] = "eworkbook@gmail.com"
+
+	o := orm.NewOrm()
+
+	var pods []*models.Pods
+	_, err := o.QueryTable(models.Pods{}).OrderBy("id").All(&pods)
+
+	if err == nil {
+		c.Data["POD"] = pods
+	}
 }
 
 // Project doc
