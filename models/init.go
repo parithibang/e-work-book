@@ -16,5 +16,5 @@ func init() {
 	orm.RegisterModelWithPrefix(prefix, new(Permissions))
 	orm.RegisterModelWithPrefix(prefix, new(PodsProjects))
 	orm.RegisterModelWithPrefix(prefix, new(RolesPermissions))
-	orm.RegisterModelWithPrefix(prefix, new(UsersPodsProjects))
+	orm.RegisterModelWithPrefix(prefix, new(UsersProjects))
 }

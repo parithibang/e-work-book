@@ -1,13 +1,9 @@
 package models
 
-import (
-	"time"
-)
-
 // Roles Model Struct
 type Roles struct {
-	Id        int
-	Name      string    `orm:"size(255)"`
-	CreatedAt time.Time `orm:"auto_now_add;type(datetime)"`
-	UpdatedAt time.Time `orm:"auto_now;type(datetime)"`
+	Id          int            `orm:"auto"`
+	Name        string         `orm:"size(255)"`
+	Users       []*Users       `orm:"reverse(many);null;rel_through(github.com/aravindkumaremis/e-work-book/models.UsersRoles)"`
+	Permissions []*Permissions `orm:"rel(m2m);null;rel_through(github.com/aravindkumaremis/e-work-book/models.RolesPermissions)"`
 }

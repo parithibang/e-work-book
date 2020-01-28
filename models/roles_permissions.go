@@ -1,14 +1,8 @@
 package models
 
-import (
-	"time"
-)
-
 // RolesPermissions Model Struct
 type RolesPermissions struct {
-	Id           int
-	PermissionId int       `orm:"size(20)"`
-	RoleId       int       `orm:"size(20)"`
-	CreatedAt    time.Time `orm:"auto_now_add;type(datetime)"`
-	UpdatedAt    time.Time `orm:"auto_now;type(datetime)"`
+	Id          int          `orm:"auto"`
+	Permissions *Permissions `orm:"rel(fk);column(permission_id)"`
+	Roles       *Roles       `orm:"rel(fk);column(role_id)"`
 }
