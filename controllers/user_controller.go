@@ -29,4 +29,5 @@ func (c *UserController) ListUsers() {
 	pagination.SetPaginator(c.Ctx, pageLimit, count)
 
 	c.Data["userList"] = userList
+	c.Data["users"] = 1
 }

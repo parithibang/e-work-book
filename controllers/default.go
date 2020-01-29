@@ -15,11 +15,11 @@ type MainController struct {
 
 // ActiveContent is the common template
 func (c *MainController) ActiveContent(view string) {
-	c.Layout = "basic-layout.tpl"
+	c.Layout = "base/basic-layout.tpl"
 	c.LayoutSections = make(map[string]string)
-	c.LayoutSections["Header"] = "header.tpl"
-	c.LayoutSections["Sidebar"] = "sidebar.tpl"
-	c.LayoutSections["Footer"] = "footer.tpl"
+	c.LayoutSections["Header"] = "base/header.tpl"
+	c.LayoutSections["Sidebar"] = "base/sidebar.tpl"
+	c.LayoutSections["Footer"] = "base/footer.tpl"
 	c.TplName = view + ".tpl"
 	c.Data[view] = 1
 }

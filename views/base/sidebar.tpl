@@ -65,7 +65,7 @@
 					<ul class="nav">
 						<li><a href="home" {{if .index}}class="active"{{end}}><i class="lnr lnr-home"></i> <span>Home</span></a></li>
 						<li><a href="search" {{if .search}}class="active"{{end}}><i class="lnr lnr-code"></i> <span>Search</span></a></li>
-                        <li><a href="employees" {{if .employees}}class="active"{{end}}><i class="lnr lnr-user"></i> <span>Users</span></a></li>
+                        <li><a href="users" {{if .users}}class="active"{{end}}><i class="lnr lnr-user"></i> <span>Users</span></a></li>
 						<li><a href="teams" {{if .teams}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
 						<li><a href="pod" {{if .pod}}class="active"{{end}}><i class="lnr lnr-shirt"></i> <span>POD</span></a></li>
 						<li><a href="project" {{if .project}}class="active"{{end}}><i class="lnr lnr-diamond"></i> <span>Project</span></a></li>
