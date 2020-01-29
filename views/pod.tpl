@@ -12,7 +12,7 @@
                     </thead>
                     <tbody>
                         {{range $val := .POD}}
-                        <tr><td>{{$val.Id}}</td><td>{{$val.Name}}</td><td>{{$val.TeamId}}</td><td>{{$val.CreatedAt}}</td></tr>
+                        <tr><td>{{$val.Id}}</td><td>{{$val.Name}}</td><td>{{$val.Name}}</td><td>{{$val.Name}}</td></tr>
                         {{end}}
                     </tbody>
                 </table>

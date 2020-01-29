@@ -21,6 +21,10 @@ github.com/go-sql-driver/mysql v1.5.0/go.mod h1:DCzpHaOWr8IXmIStZouvnhqoel9Qv2LB
 github.com/gogo/protobuf v1.1.1/go.mod h1:r8qH/GZQm5c6nD/R0oafs1akxWv10x8SbQlK7atdtwQ=
 github.com/golang/snappy v0.0.0-20180518054509-2e65f85255db/go.mod h1:/XxbfmMg8lxefKM7IXC3fBNl/7bRcc72aCRzEWrmP2Q=
 github.com/gomodule/redigo v2.0.0+incompatible/go.mod h1:B4C85qUVwatsJoIUNIfCRsp7qO0iAmpGFZ4EELWSbC4=
+github.com/ikeikeikeike/beego-samples v0.0.0-20150516163649-5815414d4bfb h1:Lj8LXR2Q1lv/i4+jCwYKU2XL8Zehxtq46LG1UjzndEM=
+github.com/ikeikeikeike/beego-samples v0.0.0-20150516163649-5815414d4bfb/go.mod h1:dabT+XMvvAPcY0H91vhwWv2hVLXF30BX61wpKG27fNk=
+github.com/ikeikeikeike/gopkg v0.0.0-20150921164235-dba476424b07 h1:4XvA0HB/TdeXFJ4hWUbWzN1o30w08YYxSnvIrX9pKMo=
+github.com/ikeikeikeike/gopkg v0.0.0-20150921164235-dba476424b07/go.mod h1:LmlpAFfqUCX065mTbRXJIJaCr8F1BxkMbUONZWkVUZU=
 github.com/lib/pq v1.0.0 h1:X5PMW56eZitiTeO7tKzZxFCSpbFZJtkMMooicw2us9A=
 github.com/lib/pq v1.0.0/go.mod h1:5WUZQaWbwv1U+lTReE5YruASi9Al49XbQIvNi/34Woo=
 github.com/mattn/go-sqlite3 v1.10.0 h1:jbhqpg7tQe4SupckyijYiy0mJJ/pRyHvXf7JdWK860o=
