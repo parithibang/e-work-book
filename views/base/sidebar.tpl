@@ -63,12 +63,12 @@
 			<div class="sidebar-scroll">
 				<nav>
 					<ul class="nav">
-						<li><a href="home" {{if .index}}class="active"{{end}}><i class="lnr lnr-home"></i> <span>Home</span></a></li>
+						<li><a href="{{ urlfor "MainController.Get"}}" {{if .index}}class="active"{{end}}><i class="lnr lnr-home"></i> <span>Home</span></a></li>
 						<li><a href="{{ urlfor "SearchController.GetSearch"}}" {{if .search}}class="active"{{end}}><i class="lnr lnr-code"></i> <span>Search</span></a></li>
                         <li><a href="{{ urlfor "UserController.ListUsers"}}" {{if .users}} class="active" {{end}}><i class="lnr lnr-user"></i> <span>Users</span></a></li>
-						<li><a href= "teams" {{if .teams}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
-						<li><a href="pod" {{if .pod}}class="active"{{end}}><i class="lnr lnr-shirt"></i> <span>POD</span></a></li>
-						<li><a href="project" {{if .project}}class="active"{{end}}><i class="lnr lnr-diamond"></i> <span>Project</span></a></li>
+						<li><a href="{{ urlfor "MainController.Teams"}}" {{if .teams}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
+						<li><a href="{{ urlfor "MainController.Pod"}}" {{if .pod}}class="active"{{end}}><i class="lnr lnr-shirt"></i> <span>POD</span></a></li>
+						<li><a href="{{ urlfor "MainController.Project"}}" {{if .project}}class="active"{{end}}><i class="lnr lnr-diamond"></i> <span>Project</span></a></li>
 						<!-- 
                         <li>
 							<a href="#subPages" data-toggle="collapse" class="collapsed"><i class="lnr lnr-file-empty"></i> <span>Admin</span> <i class="icon-submenu lnr lnr-chevron-left"></i></a>
