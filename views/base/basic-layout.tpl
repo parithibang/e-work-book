@@ -3,7 +3,7 @@
 	<!-- WRAPPER -->
 	<div id="wrapper">
 		<!-- NAVBAR -->
-        {{.Sidebar}}
+        {{template "base/sidebar.tpl" .}}
         <!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->

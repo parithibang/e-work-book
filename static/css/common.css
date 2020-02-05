@@ -1,0 +1,7 @@
+/* common styes across application */
+.user-create {
+  padding: 20px;
+}
+.form-error {
+  border-color: red;
+}

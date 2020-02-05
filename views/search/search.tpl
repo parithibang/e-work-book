@@ -1,5 +1,5 @@
 
-<div class="container">
+<div class="">
 	<div class="row">
 		<div class="col-md-6">
 			<div id="custom-search-input">

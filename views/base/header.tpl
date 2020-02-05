@@ -11,10 +11,13 @@
 	<link rel="stylesheet" href="/static/vendor/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/vendor/linearicons/style.css">
 	<link rel="stylesheet" href="/static/vendor/chartist/css/chartist-custom.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
+
 	<!-- MAIN CSS -->
 	<link rel="stylesheet" href="/static/css/main.css">
 	<!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
 	<link rel="stylesheet" href="/static/css/demo.css">
+    <link rel="stylesheet" href="/static/css/common.css">
 	<!-- GOOGLE FONTS -->
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
 	<!-- ICONS -->
