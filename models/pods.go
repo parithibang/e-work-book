@@ -6,5 +6,5 @@ type Pods struct {
 	Name     string      `orm:"size(255)"`
 	Users    []*Users    `orm:"reverse(many);null"`
 	Projects []*Projects `orm:"rel(m2m);null;rel_through(github.com/aravindkumaremis/e-work-book/models.PodsProjects)"`
-	Teams    *Teams      `orm:"null;rel(fk);column(team_id)"`
+	Teams    []*Teams    `orm:"reverse(many);null"`
 }
