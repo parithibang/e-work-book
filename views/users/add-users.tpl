@@ -37,7 +37,7 @@
                 </div>            
                 <div class="{{if .Errors.Password}}has-error{{end}} col-sm-6 col-md-6">
                     <label for="password">Password* </label>
-                    <input name="password"  id="password" type="text" value="{{.User.Password}}" class="form-control" tabindex="1" />
+                    <input name="password"  id="password" type="password" value="{{.User.Password}}" class="form-control" tabindex="1" />
                     {{ template "base/form-valid.tpl" .Errors.Password }}
                 </div>     
             </div>
