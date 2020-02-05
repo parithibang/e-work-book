@@ -28,3 +28,7 @@ install: ## install Beego
 	# go get -u github.com/beego/bee
 	## github.com/realguan/bee v1.12.1
 	## export GO111MODULE=off
+
+.PHONY: backup-db
+backup-db: ## To create a MySQL Dump
+	sh backup/create-mysql-dump.sh
