@@ -13,9 +13,9 @@
                         <tr><th>#</th><th>Team Name</th><th>Team</th><th>Created@</th><th class="pull-right">Action</th></tr>
                     </thead>
                     <tbody>
-                        {{range $val := .TEAMS}}
+                        {{range $key,$val := .TEAMS}}
                         <tr>
-                            <td>{{$val.Id}}</td>
+                            <td>{{incrementByOne $key}}</td>
                             <td>{{$val.Name}}</td>
                             <td>{{$val.Name}}</td>
                             <td>{{$val.Name}}</td>
