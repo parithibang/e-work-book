@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"strconv"
+
 	"github.com/aravindkumaremis/e-work-book/models"
-	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils/pagination"
 )
 
 // SearchController doc
@@ -12,18 +15,6 @@ type SearchController struct {
 
 // GetSearch to list user add form
 func (c *SearchController) GetSearch() {
-	o := orm.NewOrm()
-	var pods []*models.Pods
-	o.QueryTable(models.Pods{}).OrderBy("name").All(&pods, "id", "name")
-	c.Data["pods"] = pods
-
-	var teams []*models.Teams
-	o.QueryTable(models.Teams{}).OrderBy("name").All(&teams, "id", "name")
-	c.Data["teams"] = teams
-
-	var projects []*models.Projects
-	o.QueryTable(models.Projects{}).OrderBy("name").All(&projects, "id", "name")
-	c.Data["projects"] = projects
 	c.Data["searchmenu"] = 1
 	c.TplName = "search/search.tpl"
 }
@@ -31,4 +22,27 @@ func (c *SearchController) GetSearch() {
 // PostSearchResults create a new user
 func (c *SearchController) PostSearchResults() {
 	c.TplName = "search/search.tpl"
+	c.Data["searchmenu"] = 1
+
+	userName := c.GetString("user-name")
+
+	if userName == "" {
+		flash := beego.NewFlash()
+		flash.Error("User Name Should be given")
+		flash.Store(&c.Controller)
+		return
+	}
+
+	currentPage := 1
+	if page, err := strconv.Atoi(c.Input().Get("p")); err == nil {
+		currentPage = page
+	}
+
+	userProjects := models.UsersProjects{}
+	userList, count := userProjects.GetUserAssignedProjects(userName, pageLimit, currentPage)
+
+	pagination.SetPaginator(c.Ctx, pageLimit, count)
+
+	c.Data["userName"] = userName
+	c.Data["userList"] = userList
 }

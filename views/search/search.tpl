@@ -1,87 +1,53 @@
-
-<div class="">
-	<div class="row">
-		<div class="col-md-6">
-			<div id="custom-search-input">
-				<div class="input-group col-md-12">
-					<input type="text" class="form-control input-lg" placeholder="Tom Johnson" /> <span class="input-group-btn">
-                        <button class="btn btn-info btn-lg" type="button">
-                            <i class="glyphicon glyphicon-search"></i>
-                        </button>
-                    </span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<br>
-<div class="container-fluid bg-light ">
-	<div class="row align-items-center justify-content-center">
-		<div class="col-md-2 pt-3">
-			<div class="form-group ">
-				<select id="inputState " class="form-control">
-					<option selected>Team</option>
-					<option>BMW</option>
-					<option>Audi</option>
-					<option>Maruti</option>
-					<option>Tesla</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-2 pt-3">
-			<div class="form-group">
-				<select id="inputState" class="form-control">
-					<option selected>POD</option>
-					<option>BMW</option>
-					<option>Audi</option>
-					<option>Maruti</option>
-					<option>Tesla</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-2 pt-3">
-			<div class="form-group">
-				<select id="inputState" class="form-control">
-					<option selected>Project</option>
-					<option>BMW</option>
-					<option>Audi</option>
-					<option>Maruti</option>
-					<option>Tesla</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-md-2">
-			<button type="button" class="btn btn-primary btn-block">Search</button>
-		</div>
-	</div>
-</div>
-<br>
-<div class="panel panel-headline">
-	<div class="panel-heading">
-		<h3 class="panel-title">Tom Johnson</h3>
-	</div>
-    <div class="tab-content">
-        <div class="tab-pane fade active in" id="tab-bottom-left1">
-            <ul class="list-unstyled activity-timeline">
-                <li>
-                    <i class="fa fa-comment activity-icon"></i>
-                    <p>Commented added to <a href="#">Auditor</a> <span class="timestamp">2 minutes ago</span></p>
-                </li>
-                <li>
-                    <i class="fa fa-cloud-upload activity-icon"></i>
-                    <p>Uploaded new file <a href="#">Proposal.docx</a> to project <a href="#">Auditor</a> <span class="timestamp">7 hours ago</span></p>
-                </li>
-                <li>
-                    <i class="fa fa-plus activity-icon"></i>
-                    <p>Added <a href="#">Tom Johnson</a> to <a href="#">Group Internals</a> project <span class="timestamp">by JO</span></p>
-                </li>
-                <li>
-                    <i class="fa fa-check activity-icon"></i>
-                    <p>Resource Usage <a href="#">80%</a> on <a href="#">Auditor</a> Project<span class="timestamp">1 day ago</span></p>
-                </li>
-            </ul>
-            <div class="margin-top-30 text-center"><a href="#" class="btn btn-default">See all activity</a></div>
-        </div>
+<div class="panel">
+    <div class="panel-heading">
+        <h3 class="panel-title">Search User</h3>
     </div>
+	<div class="panel-body">
+        {{if .flash.error}}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                {{.flash.error}}
+            </div>
+        {{end}}
+		<div class="col-md-6">
+            <form role="form" id="user" class="user-search" method="POST">
+                <div class="form-group">
+                    <div id="custom-search-input">
+                        <div class="input-group">
+                            <input type="text" name="user-name" class="form-control input-lg" placeholder="Tom Johnson" value="{{if .userName}} {{ .userName}} {{ end }}" /> 
+                            <span class="input-group-btn">
+                                <button class="btn btn-info btn-lg" type="submit">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div> 
+            </form>
+		</div>
+        {{if .userList}}
+            <table class="table">
+                <thead>
+                    <tr><th>#</th><th>Name</th><th>Pod</th><th>Team</th><th>Project</th><th>% of work</th></tr>
+                </thead>
+                <tbody>
+                    {{range $key,$user := .userList }}
+                        <tr>
+                            <td>{{incrementByOne $key}}</td>
+                            <td>{{ $user.Users.FullName }}</td>
+                            <td>{{ $user.Users.Pods.Name }}</td>
+                            {{if $user.Users.Teams}}
+                                <td>{{ $user.Users.Teams.Name }}</td>
+                            {{ else }}
+                                <td></td>
+                            {{end}}
+                            <td>{{ $user.Projects.Name }}</td>
+                            <td>{{ $user.Percentage }}</td>
+                        </tr>
+                    {{end}}
+                </tbody>
+            </table>
+            {{template "base/paginator.tpl" .}}
+        {{end}}
+	</div>
 </div>
-
