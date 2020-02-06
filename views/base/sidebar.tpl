@@ -64,9 +64,9 @@
 				<nav>
 					<ul class="nav">
 						<li><a href="{{ urlfor "MainController.Get"}}" {{if .index}}class="active"{{end}}><i class="lnr lnr-home"></i> <span>Home</span></a></li>
-						<li><a href="{{ urlfor "SearchController.GetSearch"}}" {{if .search}}class="active"{{end}}><i class="lnr lnr-code"></i> <span>Search</span></a></li>
+						<li><a href="{{ urlfor "SearchController.GetSearch"}}" {{if .searchmenu}}class="active"{{end}}><i class="lnr lnr-code"></i> <span>Search</span></a></li>
                         <li><a href="{{ urlfor "UserController.ListUsers"}}" {{if .users}} class="active" {{end}}><i class="lnr lnr-user"></i> <span>Users</span></a></li>
-						<li><a href="{{ urlfor "MainController.Teams"}}" {{if .teams}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
+						<li><a href="{{ urlfor "MainController.Teams"}}" {{if .teamsmenu}}class="active"{{end}}><i class="lnr lnr-users"></i> <span>Teams</span></a></li>
 						<li><a href="{{ urlfor "MainController.Pod"}}" {{if .pod}}class="active"{{end}}><i class="lnr lnr-shirt"></i> <span>POD</span></a></li>
 						<li><a href="{{ urlfor "MainController.Project"}}" {{if .project}}class="active"{{end}}><i class="lnr lnr-diamond"></i> <span>Project</span></a></li>
 						<!-- 

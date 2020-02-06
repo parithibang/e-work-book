@@ -54,7 +54,8 @@ func (c *MainController) Teams() {
 
 	var teams []*models.Teams
 	_, err := o.QueryTable(models.Teams{}).OrderBy("id").All(&teams)
-	fmt.Println(teams)
+
+	c.Data["teamsmenu"] = 1
 	if err == nil {
 		c.Data["TEAMS"] = teams
 	}

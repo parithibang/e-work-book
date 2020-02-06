@@ -24,7 +24,7 @@ func (c *SearchController) GetSearch() {
 	var projects []*models.Projects
 	o.QueryTable(models.Projects{}).OrderBy("name").All(&projects, "id", "name")
 	c.Data["projects"] = projects
-
+	c.Data["searchmenu"] = 1
 	c.TplName = "search/search.tpl"
 }
 
