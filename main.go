@@ -8,13 +8,6 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-// incrementByOne function will increment by one to the given integer
-func incrementByOne(in int) (out int) {
-	out = in + 1
-	return
-}
-
 func main() {
-	beego.AddFuncMap("incrementByOne", incrementByOne)
 	beego.Run()
 }
