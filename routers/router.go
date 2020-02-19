@@ -20,4 +20,6 @@ func init() {
 	beego.Router("/profile", &controllers.MainController{}, "get,post:Profile")
 	beego.Router("/users", &controllers.UserController{}, "get:ListUsers")
 	beego.Router("/users/add", &controllers.UserController{}, "get:AddUser;post:CreateUser")
+	beego.Router("/users/edit/:id:int", &controllers.UserController{}, "get:EditUser;put:UpdateUser")
+	beego.Router("/users/delete/:id:int", &controllers.UserController{}, "delete:DeleteUser")
 }

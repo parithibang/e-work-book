@@ -33,7 +33,7 @@
                 <tbody>
                     {{range $key,$user := .userList }}
                         <tr>
-                            <td>{{incrementByOne $key}}</td>
+                            <td>{{ $key}}</td>
                             <td>{{ $user.Users.FullName }}</td>
                             <td>{{ $user.Users.Pods.Name }}</td>
                             {{if $user.Users.Teams}}
