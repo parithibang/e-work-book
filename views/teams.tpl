@@ -15,7 +15,7 @@
                     <tbody>
                         {{range $key,$val := .TEAMS}}
                         <tr>
-                            <td>{{incrementByOne $key}}</td>
+                            <td>{{ $key}}</td>
                             <td>{{$val.Name}}</td>
                             <td>{{$val.Name}}</td>
                             <td>{{$val.Name}}</td>

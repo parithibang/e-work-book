@@ -17,6 +17,7 @@
         {{end}}
 
         <form role="form" id="user" class="user-create" method="POST">
+            <input type="hidden" name="_method" value="{{ .method }}" />
             <div class="form-group col-sm-12 col-md-12">
                 <div class="{{if .Errors.FirstName}}has-error{{end}}  col-sm-6 col-md-6">
                     <label for="first-name">First name*</label>
@@ -46,7 +47,7 @@
                     <label for="pods">Pods </label>
                     <select class="form-control selectpicker show-tick" id="pods" name="pods" data-live-search="true" title="Choose one of the following..." data-dropup-auto="false" noneSelectedText>
                         {{range $pod := .pods}}
-                            <option value="{{ $pod.Id }}">{{ $pod.Name }}</option>
+                            <option value="{{ $pod.Id }}"  {{if compare ($pod.Id) ($.User.Pods.Id) }} selected {{end}} >{{ $pod.Name }}</option>
                          {{ end }}
 					</select>
                     {{ template "base/form-valid.tpl" .Errors.Pods }}
@@ -56,19 +57,24 @@
                         <label> Is Pod Lead</label>
                     </div>
                     <label class="fancy-radio visible-lg-inline-block">
-						<input name="is-pod-lead" value="1" type="radio">
+						<input name="is-pod-lead" value="1" type="radio" {{if compare (1) (.User.IsPodLead) }} checked {{end}}>
 						<span><i></i>Yes</span>
 					</label>
                     <label class="fancy-radio visible-lg-inline-block">
-						<input name="is-pod-lead" value="0" type="radio" checked>
+						<input name="is-pod-lead" value="0" type="radio" {{if compare (0) (.User.IsPodLead) }} checked {{end}}>
 						<span><i></i>No</span>
 					</label>
                 </div>     
             </div>
             <div class="form-group col-xs-10 col-sm-12 col-md-12 text-center">
+                {{ if .create }}
                 <button type="submit" class="btn btn-success">Create</button>
+                {{ end }}
+                {{ if .update }}
+                <button type="submit" class="btn btn-success">Update</button>
+                {{ end }}
                 <a href="{{ urlfor "UserController.ListUsers"}}">
-                    <button type="button" class="btn btn-danger">Cacnel</button>
+                    <button type="button" class="btn btn-danger">Cancel</button>
                 </a>
             </div>
         </form>
