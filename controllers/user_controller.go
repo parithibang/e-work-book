@@ -18,6 +18,12 @@ type UserController struct {
 
 const pageLimit = 10
 
+// Prepare user controller
+func (c *UserController) Prepare() {
+	c.BaseController.Prepare()
+	c.Data["Title"] = "Users"
+}
+
 // ListUsers to list all the users
 func (c *UserController) ListUsers() {
 	beego.ReadFromRequest(&c.Controller)

@@ -10,7 +10,7 @@ type Users struct {
 	UserName  string      `orm:"size(255)" valid:"Email; MaxSize(100)"`
 	Password  string      `orm:"type(text)" valid:"Required;MinSize(8)"`
 	IsPodLead int         `orm:"size(1);default(0)"`
-	IsActive  int         `orm:"size(1);default(1)"`
+	IsActive  int         `orm:"TINYINT(1);default(0)"`
 	Pods      *Pods       `orm:"rel(fk);column(pod_id);null"`
 	Teams     *Teams      `orm:"rel(fk);column(team_id);null"`
 	Roles     []*Roles    `orm:"rel(m2m);null;rel_through(github.com/aravindkumaremis/e-work-book/models.UsersRoles)"`

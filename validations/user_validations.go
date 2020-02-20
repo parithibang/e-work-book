@@ -24,6 +24,7 @@ func Uservalidate(req *http.Request) (validation.Validation, models.Users) {
 		UserName:  req.FormValue("user-name"),
 		Pods:      &selectedPod,
 		IsPodLead: isPodLead,
+		IsActive:  1,
 	}
 
 	valid := validation.Validation{}

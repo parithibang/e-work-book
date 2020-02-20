@@ -31,13 +31,6 @@ func (c *MainController) Get() {
 	c.Data["Email"] = "eworkbook@gmail.com"
 }
 
-// Search doc
-func (c *MainController) Search() {
-	c.ActiveContent("search")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-}
-
 // Employees doc
 func (c *MainController) Employees() {
 	c.ActiveContent("employees")
