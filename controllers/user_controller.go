@@ -18,6 +18,13 @@ type UserController struct {
 
 const pageLimit = 10
 
+// Prepare user controller
+func (c *UserController) Prepare() {
+	c.BaseController.Prepare()
+	c.Data["Title"] = "Users"
+	c.Data["usersMenu"] = 1
+}
+
 // ListUsers to list all the users
 func (c *UserController) ListUsers() {
 	beego.ReadFromRequest(&c.Controller)
@@ -37,6 +44,7 @@ func (c *UserController) ListUsers() {
 	c.Data["userList"] = userList
 	c.Data["deleteMethod"] = "delete"
 	c.Data["pageStart"] = pageStart
+	c.Data["count"] = count
 }
 
 // AddUser to list user add form

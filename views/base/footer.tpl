@@ -37,8 +37,10 @@
 				showGrid: false	
 			},	
 			lineSmooth: false,	
-		};	
-		new Chartist.Line('#headline-chart', data, options);
+		};
+        if ($("#headline-chart").length){
+            new Chartist.Line('#headline-chart', data, options);
+        }		
 	});	
 	</script>
 </body>

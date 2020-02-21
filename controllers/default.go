@@ -1,11 +1,7 @@
 package controllers
 
 import (
-	"fmt"
-
-	"github.com/aravindkumaremis/e-work-book/models"
 	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
 )
 
 // MainController doc
@@ -29,67 +25,6 @@ func (c *MainController) Get() {
 	c.ActiveContent("index")
 	c.Data["Website"] = "eWorkBook"
 	c.Data["Email"] = "eworkbook@gmail.com"
-}
-
-// Search doc
-func (c *MainController) Search() {
-	c.ActiveContent("search")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-}
-
-// Employees doc
-func (c *MainController) Employees() {
-	c.ActiveContent("employees")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-}
-
-// Teams doc
-func (c *MainController) Teams() {
-	c.ActiveContent("teams")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-	o := orm.NewOrm()
-
-	var teams []*models.Teams
-	_, err := o.QueryTable(models.Teams{}).OrderBy("id").All(&teams)
-
-	c.Data["teamsmenu"] = 1
-	if err == nil {
-		c.Data["TEAMS"] = teams
-	}
-}
-
-// Pod doc
-func (c *MainController) Pod() {
-	c.ActiveContent("pod")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-
-	o := orm.NewOrm()
-
-	var pods []*models.Pods
-	_, err := o.QueryTable(models.Pods{}).OrderBy("id").All(&pods)
-	if err == nil {
-		c.Data["POD"] = pods
-	}
-}
-
-// Project doc
-func (c *MainController) Project() {
-	c.ActiveContent("project")
-	c.Data["Website"] = "eWorkBook"
-	c.Data["Email"] = "eworkbook@gmail.com"
-
-	o := orm.NewOrm()
-
-	var projects []*models.Projects
-	_, err := o.QueryTable(models.Projects{}).OrderBy("id").All(&projects)
-	fmt.Println(projects)
-	if err == nil {
-		c.Data["PROJECTS"] = projects
-	}
 }
 
 // Login doc

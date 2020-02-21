@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 // Users Model Struct
 type Users struct {
@@ -10,7 +12,7 @@ type Users struct {
 	UserName  string      `orm:"size(255)" valid:"Email; MaxSize(100)"`
 	Password  string      `orm:"type(text)" valid:"Required;MinSize(8)"`
 	IsPodLead int         `orm:"size(1);default(0)"`
-	IsActive  int         `orm:"size(1);default(1)"`
+	IsActive  int         `orm:"TINYINT(1);default(0)"`
 	Pods      *Pods       `orm:"rel(fk);column(pod_id);null"`
 	Teams     *Teams      `orm:"rel(fk);column(team_id);null"`
 	Roles     []*Roles    `orm:"rel(m2m);null;rel_through(github.com/aravindkumaremis/e-work-book/models.UsersRoles)"`
@@ -26,6 +28,14 @@ func (user *Users) GetAllUsers(limit, page int) ([]*Users, int64) {
 	setter.Limit(limit, (page-1)*limit).All(&users)
 
 	return users, count
+}
+
+//GetUsers list all the pods
+func (user *Users) GetUsers() []*Users {
+	var users []*Users
+	o := orm.NewOrm()
+	o.QueryTable(Users{}).OrderBy("id").All(&users, "id", "first_name", "last_name")
+	return users
 }
 
 // FullName list all the users
