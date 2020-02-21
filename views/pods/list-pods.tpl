@@ -18,43 +18,42 @@
                 {{.flash.custom_success}}
             </div>
         {{end}}
-
-        <h3 class="panel-title">Users</h3>
-        <a href="{{ urlfor "UserController.AddUser"}}">
+        <h3 class="panel-title">Pods</h3>
+        <a href="{{ urlfor "PodController.AddPod"}}">
             <span class="pull-right button-add">Add
                 <i class="fa fa-plus-circle"></i>
             </span>
         </a>
+        <div class="clearfix"></div>
     </div>
     <div class="panel-body">
         <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Pod</th>
-                    <th>Actions</th>
+                    <th>Pod Name</th>
+                    <th>Unit</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                {{range $key,$user := .userList}}
+                {{range $key,$pod := .podList}}
                     <tr>
-                        <td>{{ calculate $.pageStart $key "+"}}
-                        </td>
-                        <td>{{ $user.FullName}}</td>
-                        <td>{{ $user.Pods.Name}}</td>
+                        <td>{{ calculate $.pageStart $key "+" }}</td>
+                        <td>{{$pod.Name}}</td>
+                        <td>{{$pod.Units.Name}}</td>
                         <td>
-                            <a href="{{ urlfor "UserController.EditUser" ":id" $user.Id}}">
-                                <span class="button-edit">Edit
-                                    <i class="fa fa-edit"></i>
+                            <a href="{{ urlfor "PodController.EditPod" ":id" $pod.Id}}">
+                                <span class="button-edit">Edit<i class="fa fa-edit"></i>
                                 </span>
                             </a>
                             <a href="#">
-                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $user.Id}}">Delete
+                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $pod.Id}}">Delete
                                     <i class="fa fa-trash"></i>
                                 </span>
                             </a>
-                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $user.Id "method" $.deleteMethod "deleteUrl" (urlfor "UserController.DeleteUser" ":id" $user.Id) ) }}
+                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $pod.Id "method" $.deleteMethod "deleteUrl" (urlfor "PodController.DeletePod" ":id" $pod.Id) ) }}
+
                         </td>
                     </tr>
                 {{end}}
@@ -65,4 +64,5 @@
             {{ .count }}</span>
         {{template "base/paginator.tpl" .}}
     </div>
+
 </div>

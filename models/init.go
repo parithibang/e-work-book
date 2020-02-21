@@ -11,6 +11,7 @@ func init() {
 	orm.RegisterModelWithPrefix(prefix, new(Roles))
 	orm.RegisterModelWithPrefix(prefix, new(Teams))
 	orm.RegisterModelWithPrefix(prefix, new(Users))
+	orm.RegisterModelWithPrefix(prefix, new(Units))
 	orm.RegisterModelWithPrefix(prefix, new(Projects))
 	orm.RegisterModelWithPrefix(prefix, new(UsersRoles))
 	orm.RegisterModelWithPrefix(prefix, new(Permissions))

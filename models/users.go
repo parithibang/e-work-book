@@ -1,6 +1,8 @@
 package models
 
-import "github.com/astaxie/beego/orm"
+import (
+	"github.com/astaxie/beego/orm"
+)
 
 // Users Model Struct
 type Users struct {
@@ -26,6 +28,14 @@ func (user *Users) GetAllUsers(limit, page int) ([]*Users, int64) {
 	setter.Limit(limit, (page-1)*limit).All(&users)
 
 	return users, count
+}
+
+//GetUsers list all the pods
+func (user *Users) GetUsers() []*Users {
+	var users []*Users
+	o := orm.NewOrm()
+	o.QueryTable(Users{}).OrderBy("id").All(&users, "id", "first_name", "last_name")
+	return users
 }
 
 // FullName list all the users

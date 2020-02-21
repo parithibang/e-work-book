@@ -20,6 +20,7 @@ type TeamController struct {
 func (c *TeamController) Prepare() {
 	c.BaseController.Prepare()
 	c.Data["Title"] = "Teams"
+	c.Data["teamsMenu"] = 1
 }
 
 // ListTeams to list all the teams
@@ -41,7 +42,7 @@ func (c *TeamController) ListTeams() {
 	c.Data["teamList"] = teamList
 	c.Data["deleteMethod"] = "delete"
 	c.Data["pageStart"] = pageStart
-	c.Data["Title"] = "Teams"
+	c.Data["count"] = count
 }
 
 // AddTeam to list team add form
@@ -77,6 +78,80 @@ func (c *TeamController) CreateTeam() {
 	}
 
 	c.TplName = "teams/add-teams.tpl"
+}
+
+// EditTeam edit form for team module
+func (c *TeamController) EditTeam() {
+	flash := beego.NewFlash()
+	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	o := orm.NewOrm()
+	team := models.Teams{Id: teamId}
+	err := o.Read(&team)
+
+	if err != nil {
+		flash.Error("Team Not Found!!!")
+		flash.Store(&c.Controller)
+		c.Abort("404")
+	}
+
+	pods := new(models.Pods).GetPods()
+	c.Data["Team"] = team
+	c.Data["pods"] = pods
+	c.Data["update"] = true
+	c.Data["method"] = "put"
+	c.TplName = "teams/add-teams.tpl"
+}
+
+// UpdateTeam to update the team module
+func (c *TeamController) UpdateTeam() {
+	o := orm.NewOrm()
+	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	team := models.Teams{Id: teamId}
+	o.Read(&team)
+	pods := new(models.Pods).GetPods()
+	c.FormParsing()
+	req := c.Ctx.Request
+	valid, updatedTeam := validations.Teamvalidate(req)
+	updatedTeam.Id = teamId
+
+	if !c.CheckErrors(valid, updatedTeam) {
+		flash := beego.NewFlash()
+		_, err := o.Update(&updatedTeam)
+		if err != nil {
+			flash.Error("There is some problem while record update")
+		} else {
+			flash.Success("Team Updated Successfully!!!")
+		}
+		flash.Store(&c.Controller)
+	}
+
+	c.Data["Team"] = updatedTeam
+	c.Data["pods"] = pods
+	c.Data["update"] = true
+	c.Data["method"] = "put"
+
+	c.TplName = "teams/add-teams.tpl"
+}
+
+// DeleteTeam to delete team
+func (c *TeamController) DeleteTeam() {
+	o := orm.NewOrm()
+	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	flash := beego.NewFlash()
+
+	_, err := o.QueryTable(models.Teams{}).Filter("id", teamId).Update(orm.Params{
+		"is_active": 0,
+	})
+
+	if err != nil {
+		flash.Set("custom_error", "There is some problem while deleteing record")
+	} else {
+		flash.Set("custom_success", "Team Deleted Successfully!!!")
+	}
+
+	flash.Store(&c.Controller)
+
+	c.Redirect(beego.URLFor("TeamController.ListTeams"), 303)
 }
 
 //FormParsing checks form parsing

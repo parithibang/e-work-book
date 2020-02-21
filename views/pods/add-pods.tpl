@@ -1,6 +1,6 @@
 <div class="panel">
     <div class="panel-heading">
-        <h3 class="panel-title">Add New Team</h3>
+        <h3 class="panel-title">Add New Pod</h3>
     </div>
     <div class="panel-body">
         {{if .flash.error}}
@@ -25,19 +25,19 @@
             <input type="hidden" name="_method" value="{{ .method }}"/>
             <div class="form-group col-sm-12 col-md-12">
                 <div class="{{if .Errors.Name}}has-error{{end}} col-sm-6 col-md-6">
-                    <label for="team-name">Team name*</label>
-                    <input name="team-name" id="team-name" type="text" value="{{.Team.Name}}" class="form-control" tabindex="1"/>
+                    <label for="pod-name">Pod name*</label>
+                    <input name="pod-name" id="pod-name" type="text" value="{{.Pod.Name}}" class="form-control" tabindex="1"/>
                     {{ template "base/form-valid.tpl" .Errors.Name }}
                 </div>
-                <div class="{{if .Errors.Pods}}has-error{{end}} col-sm-6 col-md-6">
-                    <label for="pods">Pods
+                <div class="{{if .Errors.Units }}has-error{{end}} col-sm-6 col-md-6">
+                    <label for="pods">Units
                     </label>
                     <select class="form-control selectpicker show-tick" id="pods" name="pods" data-live-search="true" title="Choose one of the following..." data-dropup-auto="false" noneSelectedText="noneSelectedText">
-                        {{range $pod := .pods}}
-                            <option value="{{ $pod.Id }}" {{if compare ($pod.Id) ($.Team.Pods.Id) }} selected="selected" {{end}}>{{ $pod.Name }}</option>
+                        {{range $unit := .units}}
+                            <option value="{{ $unit.Id }}" {{if compare ($unit.Id) ($.Pod.Units.Id) }} selected="selected" {{end}}>{{ $unit.Name }}</option>
                         {{ end }}
                     </select>
-                    {{ template "base/form-valid.tpl" .Errors.Pods }}
+                    {{ template "base/form-valid.tpl" .Errors.Units }}
                 </div>
             </div>
             <div class="form-group col-xs-10 col-sm-12 col-md-12 text-center">
@@ -47,7 +47,7 @@
                 {{ if .update }}
                     <button type="submit" class="btn btn-success">Update</button>
                 {{ end }}
-                <a href="{{ urlfor "TeamController.ListTeams"}}">
+                <a href="{{ urlfor "PodController.ListPods"}}">
                     <button type="button" class="btn btn-danger">Cancel</button>
                 </a>
             </div>
