@@ -14,6 +14,7 @@
             <div class="modal-footer">
                 <form action="{{.deleteUrl}}" role="form" id="user" class="user-create" method="POST">
                     <input type="hidden" name="_method" value="{{ .method }}"/>
+                    <input type="hidden" name="request-params" value="{{ .requestParams }}"/>
 
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="submit" class="btn btn btn-danger">

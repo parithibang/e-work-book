@@ -15,8 +15,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/js/bootstrap-select.min.js"></script>
 	<script src="/static/js/klorofil-common.js"></script>
     <script src="/static/js/common.js"></script>
-    <script src="/static/js/common.js"></script>
-     <script>
+    {{ block "js" . }}{{ end }}    
+    <script>
 	$(function() {	
 		var data, options;	
 		// headline charts	

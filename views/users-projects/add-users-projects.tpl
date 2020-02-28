@@ -65,13 +65,17 @@
             <div class="form-group col-xs-10 col-sm-12 col-md-12 text-center">
                 {{ if .create }}
                     <button type="submit" class="btn btn-success">Create</button>
+                    <a href="{{ urlfor "SearchController.GetSearch"}}">
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </a>
                 {{ end }}
                 {{ if .update }}
                     <button type="submit" class="btn btn-success">Update</button>
+                    <input type="hidden" name="redirect-link" value="{{ .redirectURL }}"/>
+                    <a href="{{if .redirectURL}}{{.redirectURL}}{{ else }}{{urlfor "SearchController.GetSearch"}}{{end}}">
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </a>
                 {{ end }}
-                <a href="{{ urlfor "SearchController.GetSearch"}}">
-                    <button type="button" class="btn btn-danger">Cancel</button>
-                </a>
             </div>
         </form>
     </div>

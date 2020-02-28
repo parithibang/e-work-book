@@ -25,11 +25,6 @@ func (c *UsersProjectsController) Prepare() {
 
 // AddUserProjectDetail add user project
 func (c *UsersProjectsController) AddUserProjectDetail() {
-	// userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(2)
-
-	// str := fmt.Sprintf("%v", userPercentage[0])
-	// fmt.Println(str)
-
 	users := new(models.Users).GetUsers()
 	projects := new(models.Projects).GetProjects()
 
@@ -77,6 +72,101 @@ func (c *UsersProjectsController) CreateUserProjectDetail() {
 	}
 
 	c.TplName = "users-projects/add-users-projects.tpl"
+}
+
+// EditUserProjects edit form for team module
+func (c *UsersProjectsController) EditUserProjects() {
+	flash := beego.ReadFromRequest(&c.Controller)
+	fmt.Println(flash.Data["custom_redirect"])
+	redirectUrl := flash.Data["custom_redirect"]
+	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	o := orm.NewOrm()
+	userProject := models.UsersProjects{Id: userProjectId}
+	projects := new(models.Projects).GetProjects()
+	users := new(models.Users).GetUsers()
+
+	err := o.Read(&userProject)
+
+	if err != nil {
+		flash.Error("UsersProject Not Found!!!")
+		flash.Store(&c.Controller)
+		c.Abort("404")
+	}
+
+	c.Data["projects"] = projects
+	c.Data["users"] = users
+	c.Data["UserProjects"] = userProject
+	c.Data["update"] = true
+	c.Data["method"] = "put"
+	c.Data["redirectURL"] = redirectUrl
+	c.TplName = "users-projects/add-users-projects.tpl"
+}
+
+// UpdateTeam to update the team module
+func (c *UsersProjectsController) UpdateUserProjects() {
+	o := orm.NewOrm()
+	redirectLink := c.GetString("redirect-link")
+	fmt.Println(redirectLink)
+	projects := new(models.Projects).GetProjects()
+	users := new(models.Users).GetUsers()
+	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	userProject := models.UsersProjects{Id: userProjectId}
+	o.Read(&userProject)
+	req := c.Ctx.Request
+	valid, updatedUserProject := validations.UserProjectvalidate(req)
+	updatedUserProject.Id = userProjectId
+
+	if !c.CheckErrors(valid, updatedUserProject) {
+		flash := beego.NewFlash()
+		_, err := o.Update(&updatedUserProject)
+
+		userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(updatedUserProject.Users.Id)
+		percentage := fmt.Sprintf("%v", userPercentage[0])
+		percentageFloat, _ := strconv.ParseFloat(percentage, 64)
+		displayUser := models.Users{Id: updatedUserProject.Users.Id}
+		o.Read(&displayUser)
+
+		if percentageFloat > 100.00 {
+			flash.Warning("%s is allocated with %.2f%s of work", displayUser.FullName(), percentageFloat, "%")
+		}
+
+		if err != nil {
+			flash.Error("There is some problem while record update")
+		} else {
+			flash.Success("Record Updated Successfully!!!")
+		}
+		flash.Store(&c.Controller)
+	}
+
+	c.Data["UserProjects"] = updatedUserProject
+	c.Data["projects"] = projects
+	c.Data["users"] = users
+	c.Data["update"] = true
+	c.Data["method"] = "put"
+	c.Data["redirectURL"] = redirectLink
+
+	c.TplName = "users-projects/add-users-projects.tpl"
+}
+
+// DeleteUserProject to delete user
+func (c *UsersProjectsController) DeleteUserProject() {
+	o := orm.NewOrm()
+	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	flash := beego.NewFlash()
+	redirectURL := c.GetString("request-params")
+	_, err := o.QueryTable(models.UsersProjects{}).Filter("id", userProjectId).Update(orm.Params{
+		"is_active": 0,
+	})
+
+	if err != nil {
+		flash.Set("custom_error", "There is some problem while deleteing record")
+	} else {
+		flash.Set("custom_success", "Record Deleted Successfully!!!")
+	}
+
+	flash.Store(&c.Controller)
+
+	c.Redirect(redirectURL, 303)
 }
 
 //CheckErrors checks errors while validating
