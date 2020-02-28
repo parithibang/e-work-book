@@ -9,7 +9,8 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/home", &controllers.MainController{}, "get,post:Get")
-	beego.Router("/search", &controllers.SearchController{}, "get:GetSearch;post:PostSearchResults")
+	beego.Router("/search", &controllers.SearchController{}, "get:GetSearch")
+	beego.Router("/search/user/", &controllers.SearchController{}, "get:UserSearchResults")
 
 	beego.Router("/users", &controllers.UserController{}, "get:ListUsers")
 	beego.Router("/users/add", &controllers.UserController{}, "get:AddUser;post:CreateUser")
@@ -32,6 +33,8 @@ func init() {
 	beego.Router("/projects/delete/:id:int", &controllers.ProjectController{}, "delete:DeleteProject")
 
 	beego.Router("/add-users-project", &controllers.UsersProjectsController{}, "get:AddUserProjectDetail;post:CreateUserProjectDetail")
+	beego.Router("/users-project/delete/:id:int", &controllers.UsersProjectsController{}, "delete:DeleteUserProject")
+	beego.Router("/users-project/edit/:id:int", &controllers.UsersProjectsController{}, "get:EditUserProjects;put:UpdateUserProjects")
 
 	beego.Router("/login", &controllers.MainController{}, "get,post:Login")
 	beego.Router("/loginCheck", &controllers.MainController{}, "get,post:LoginCheck")

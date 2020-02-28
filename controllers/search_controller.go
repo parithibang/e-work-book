@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"strconv"
+
 	"github.com/aravindkumaremis/e-work-book/models"
 	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/utils/pagination"
 )
 
 // SearchController doc
@@ -22,22 +25,36 @@ func (c *SearchController) GetSearch() {
 	c.TplName = "search/search.tpl"
 }
 
-// PostSearchResults create a new user
-func (c *SearchController) PostSearchResults() {
+// UserSearchResults create a new user
+func (c *SearchController) UserSearchResults() {
+	beego.ReadFromRequest(&c.Controller)
+	flash := beego.NewFlash()
 	c.TplName = "search/search.tpl"
+	currentPage := 1
+	if page, err := strconv.Atoi(c.Input().Get("p")); err == nil {
+		currentPage = page
+	}
 
 	userName := c.GetString("user-name")
 
 	if userName == "" {
-		flash := beego.NewFlash()
-		flash.Error("User Name Should be given")
+		flash.Set("custom_error", "User Name Should be given")
 		flash.Store(&c.Controller)
 		return
 	}
 
 	userProjects := models.UsersProjects{}
-	searchList := userProjects.GetUserAssignedProjects(userName)
+	searchList, count := userProjects.GetUserAssignedProjects(userName, pageLimit, currentPage)
+
+	pagination.SetPaginator(c.Ctx, pageLimit, count)
+	pageStart := currentPage*pageLimit - (pageLimit - 1)
+	flash.Set("custom_redirect", beego.URLFor("SearchController.UserSearchResults", "user-name", userName))
+	flash.Store(&c.Controller)
 
 	c.Data["userName"] = userName
-	c.Data["userList"] = searchList
+	c.Data["userProjectList"] = searchList
+	c.Data["pageStart"] = pageStart
+	c.Data["deleteMethod"] = "delete"
+	c.Data["count"] = count
+	c.Data["requestParams"] = beego.URLFor("SearchController.UserSearchResults", "user-name", userName)
 }
