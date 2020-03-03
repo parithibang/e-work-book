@@ -3,7 +3,7 @@ package controllers
 import (
 	"strconv"
 
-	"github.com/aravindkumaremis/e-work-book/models"
+	"github.com/parithibang/e-work-book/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
 )

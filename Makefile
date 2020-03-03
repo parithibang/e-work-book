@@ -24,10 +24,6 @@ run: ## Run the beggo application in  http://localhost:8080
 .PHONY: install
 install: ## install Beego
 	go get ./...
-	# go get -u github.com/astaxie/beego
-	# go get -u github.com/beego/bee
-	## github.com/realguan/bee v1.12.1
-	## export GO111MODULE=off
 
 .PHONY: backup-db
 backup-db: ## To create a MySQL Dump
