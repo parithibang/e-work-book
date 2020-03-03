@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/aravindkumaremis/e-work-book/models"
+	"github.com/parithibang/e-work-book/models"
 	"github.com/astaxie/beego/validation"
 )
 

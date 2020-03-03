@@ -3,7 +3,7 @@ package validations
 import (
 	"net/http"
 
-	"github.com/aravindkumaremis/e-work-book/models"
+	"github.com/parithibang/e-work-book/models"
 	"github.com/astaxie/beego/validation"
 )
 
