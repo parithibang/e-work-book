@@ -15,8 +15,8 @@ type Users struct {
 	IsActive  int         `orm:"TINYINT(1);default(0)"`
 	Pods      *Pods       `orm:"rel(fk);column(pod_id);null"`
 	Teams     *Teams      `orm:"rel(fk);column(team_id);null"`
-	Roles     []*Roles    `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/models.UsersRoles)"`
-	Projects  []*Projects `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/models.UsersProjects)"`
+	Roles     []*Roles    `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/app/models.UsersRoles)"`
+	Projects  []*Projects `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/app/models.UsersProjects)"`
 }
 
 // GetAllUsers list all the users

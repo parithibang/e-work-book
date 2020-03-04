@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/parithibang/e-work-book/models"
 	"github.com/astaxie/beego/validation"
+	"github.com/parithibang/e-work-book/app/models"
 )
 
 // Podvalidate validate the pod create

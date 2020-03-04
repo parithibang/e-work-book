@@ -7,11 +7,11 @@ import (
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
 	"github.com/astaxie/beego/validation"
-	"github.com/parithibang/e-work-book/models"
-	"github.com/parithibang/e-work-book/validations"
+	"github.com/parithibang/e-work-book/app/models"
+	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// TeamController doc
+// PodController doc
 type PodController struct {
 	BaseController
 }

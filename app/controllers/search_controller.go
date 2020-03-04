@@ -3,9 +3,9 @@ package controllers
 import (
 	"strconv"
 
-	"github.com/parithibang/e-work-book/models"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/utils/pagination"
+	"github.com/parithibang/e-work-book/app/models"
 )
 
 // SearchController doc
