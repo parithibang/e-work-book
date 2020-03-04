@@ -8,7 +8,7 @@ type Pods struct {
 	Name     string      `orm:"size(255)" valid:"Required"`
 	Users    []*Users    `orm:"reverse(many);null"`
 	IsActive int         `orm:"default(1)"`
-	Projects []*Projects `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/models.PodsProjects)"`
+	Projects []*Projects `orm:"rel(m2m);null;rel_through(github.com/parithibang/e-work-book/app/models.PodsProjects)"`
 	Teams    []*Teams    `orm:"reverse(many);null"`
 	Units    *Units      `orm:"rel(fk);column(unit_id);null"`
 }

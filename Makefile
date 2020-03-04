@@ -22,8 +22,16 @@ run: ## Run the beggo application in  http://localhost:8080
 	bee run
 
 .PHONY: install
-install: ## install Beego
+install: ## install all project dependency
 	go get ./...
+
+.PHONY: lint
+lint: ## Lint the code
+	golint -set_exit_status ./{app,setup}/...
+
+.PHONY: security-check
+security-check: ## Inspect code for security vulnerabilities
+	gosec ./...
 
 .PHONY: backup-db
 backup-db: ## To create a MySQL Dump

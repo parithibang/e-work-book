@@ -3,12 +3,12 @@ package controllers
 import (
 	"strconv"
 
-	"github.com/parithibang/e-work-book/models"
-	"github.com/parithibang/e-work-book/validations"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
 	"github.com/astaxie/beego/validation"
+	"github.com/parithibang/e-work-book/app/models"
+	"github.com/parithibang/e-work-book/app/validations"
 )
 
 // ProjectController doc
