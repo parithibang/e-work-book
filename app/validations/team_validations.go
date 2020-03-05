@@ -10,10 +10,10 @@ import (
 
 // Teamvalidate validate the team create
 func Teamvalidate(req *http.Request) (validation.Validation, models.Teams) {
-	podId, _ := strconv.Atoi(req.FormValue("pods"))
+	podID, _ := strconv.Atoi(req.FormValue("pods"))
 
 	selectedPod := models.Pods{
-		Id: podId,
+		ID: podID,
 	}
 
 	team := models.Teams{
@@ -25,7 +25,7 @@ func Teamvalidate(req *http.Request) (validation.Validation, models.Teams) {
 	valid := validation.Validation{}
 	valid.Valid(&team)
 
-	if podId == 0 {
+	if podID == 0 {
 		valid.SetError("Pods", "Pod Should be selected")
 	}
 

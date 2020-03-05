@@ -11,7 +11,7 @@ import (
 	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// SearchController doc
+// UsersProjectsController Controller actions for users assigned projects
 type UsersProjectsController struct {
 	BaseController
 }
@@ -52,10 +52,10 @@ func (c *UsersProjectsController) CreateUserProjectDetail() {
 		flash := beego.NewFlash()
 		_, err := o.Insert(&userProjects)
 
-		userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(userProjects.Users.Id)
+		userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(userProjects.Users.ID)
 		percentage := fmt.Sprintf("%v", userPercentage[0])
 		percentageFloat, _ := strconv.ParseFloat(percentage, 64)
-		displayUser := models.Users{Id: userProjects.Users.Id}
+		displayUser := models.Users{ID: userProjects.Users.ID}
 		o.Read(&displayUser)
 
 		if percentageFloat > 100.00 {
@@ -74,14 +74,14 @@ func (c *UsersProjectsController) CreateUserProjectDetail() {
 	c.TplName = "users-projects/add-users-projects.tpl"
 }
 
-// EditUserProjects edit form for team module
+// EditUserProjects edit the user project record
 func (c *UsersProjectsController) EditUserProjects() {
 	flash := beego.ReadFromRequest(&c.Controller)
 	fmt.Println(flash.Data["custom_redirect"])
-	redirectUrl := flash.Data["custom_redirect"]
-	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	redirectURL := flash.Data["custom_redirect"]
+	userProjectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	o := orm.NewOrm()
-	userProject := models.UsersProjects{Id: userProjectId}
+	userProject := models.UsersProjects{ID: userProjectID}
 	projects := new(models.Projects).GetProjects()
 	users := new(models.Users).GetUsers()
 
@@ -98,32 +98,32 @@ func (c *UsersProjectsController) EditUserProjects() {
 	c.Data["UserProjects"] = userProject
 	c.Data["update"] = true
 	c.Data["method"] = "put"
-	c.Data["redirectURL"] = redirectUrl
+	c.Data["redirectURL"] = redirectURL
 	c.TplName = "users-projects/add-users-projects.tpl"
 }
 
-// UpdateTeam to update the team module
+// UpdateUserProjects to update the user project record
 func (c *UsersProjectsController) UpdateUserProjects() {
 	o := orm.NewOrm()
 	redirectLink := c.GetString("redirect-link")
 	fmt.Println(redirectLink)
 	projects := new(models.Projects).GetProjects()
 	users := new(models.Users).GetUsers()
-	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
-	userProject := models.UsersProjects{Id: userProjectId}
+	userProjectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	userProject := models.UsersProjects{ID: userProjectID}
 	o.Read(&userProject)
 	req := c.Ctx.Request
 	valid, updatedUserProject := validations.UserProjectvalidate(req)
-	updatedUserProject.Id = userProjectId
+	updatedUserProject.ID = userProjectID
 
 	if !c.CheckErrors(valid, updatedUserProject) {
 		flash := beego.NewFlash()
 		_, err := o.Update(&updatedUserProject)
 
-		userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(updatedUserProject.Users.Id)
+		userPercentage := new(models.UsersProjects).GetTotalWorkPercentageOfUser(updatedUserProject.Users.ID)
 		percentage := fmt.Sprintf("%v", userPercentage[0])
 		percentageFloat, _ := strconv.ParseFloat(percentage, 64)
-		displayUser := models.Users{Id: updatedUserProject.Users.Id}
+		displayUser := models.Users{ID: updatedUserProject.Users.ID}
 		o.Read(&displayUser)
 
 		if percentageFloat > 100.00 {
@@ -151,10 +151,10 @@ func (c *UsersProjectsController) UpdateUserProjects() {
 // DeleteUserProject to delete user
 func (c *UsersProjectsController) DeleteUserProject() {
 	o := orm.NewOrm()
-	userProjectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	userProjectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	flash := beego.NewFlash()
 	redirectURL := c.GetString("request-params")
-	_, err := o.QueryTable(models.UsersProjects{}).Filter("id", userProjectId).Update(orm.Params{
+	_, err := o.QueryTable(models.UsersProjects{}).Filter("id", userProjectID).Update(orm.Params{
 		"is_active": 0,
 	})
 

@@ -11,7 +11,7 @@ import (
 	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// UserController doc
+// UserController Controller actions for users
 type UserController struct {
 	BaseController
 }
@@ -85,9 +85,9 @@ func (c *UserController) CreateUser() {
 // EditUser to list user add form
 func (c *UserController) EditUser() {
 	flash := beego.NewFlash()
-	userId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	userID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	o := orm.NewOrm()
-	user := models.Users{Id: userId}
+	user := models.Users{ID: userID}
 	err := o.Read(&user)
 
 	if err != nil {
@@ -107,14 +107,14 @@ func (c *UserController) EditUser() {
 // UpdateUser to list user add form
 func (c *UserController) UpdateUser() {
 	o := orm.NewOrm()
-	userId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
-	user := models.Users{Id: userId}
+	userID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	user := models.Users{ID: userID}
 	o.Read(&user)
 	pods := new(models.Pods).GetPods()
 	c.FormParsing()
 	req := c.Ctx.Request
 	valid, updatedUser := validations.Uservalidate(req)
-	updatedUser.Id = userId
+	updatedUser.ID = userID
 
 	if !c.CheckErrors(valid, updatedUser) {
 		flash := beego.NewFlash()
@@ -165,10 +165,10 @@ func (c *UserController) CheckErrors(valid validation.Validation, user models.Us
 // DeleteUser to delete user
 func (c *UserController) DeleteUser() {
 	o := orm.NewOrm()
-	userId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	userID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	flash := beego.NewFlash()
 
-	_, err := o.QueryTable(models.Users{}).Filter("id", userId).Update(orm.Params{
+	_, err := o.QueryTable(models.Users{}).Filter("id", userID).Update(orm.Params{
 		"is_active": 0,
 	})
 

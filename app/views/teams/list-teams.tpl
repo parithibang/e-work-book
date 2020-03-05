@@ -43,16 +43,16 @@
                         <td>{{$team.Name}}</td>
                         <td>{{$team.Pods.Name}}</td>
                         <td>
-                            <a href="{{ urlfor "TeamController.EditTeam" ":id" $team.Id}}">
+                            <a href="{{ urlfor "TeamController.EditTeam" ":id" $team.ID}}">
                                 <span class="button-edit">Edit<i class="fa fa-edit"></i>
                                 </span>
                             </a>
                             <a href="#">
-                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $team.Id}}">Delete
+                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $team.ID}}">Delete
                                     <i class="fa fa-trash"></i>
                                 </span>
                             </a>
-                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $team.Id "method" $.deleteMethod "deleteUrl" (urlfor "TeamController.DeleteTeam" ":id" $team.Id) ) }}
+                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $team.ID "method" $.deleteMethod "deleteUrl" (urlfor "TeamController.DeleteTeam" ":id" $team.ID) ) }}
 
                         </td>
                     </tr>

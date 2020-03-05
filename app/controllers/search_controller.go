@@ -8,7 +8,7 @@ import (
 	"github.com/parithibang/e-work-book/app/models"
 )
 
-// SearchController doc
+// SearchController Search for user projects mapping
 type SearchController struct {
 	BaseController
 }

@@ -41,16 +41,16 @@
                         <td>{{ calculate $.pageStart $key "+" }}</td>
                         <td>{{$project.Name}}</td>
                         <td>
-                            <a href="{{ urlfor "ProjectController.EditProject" ":id" $project.Id}}">
+                            <a href="{{ urlfor "ProjectController.EditProject" ":id" $project.ID}}">
                                 <span class="button-edit">Edit<i class="fa fa-edit"></i>
                                 </span>
                             </a>
                             <a href="#">
-                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $project.Id}}">Delete
+                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $project.ID}}">Delete
                                     <i class="fa fa-trash"></i>
                                 </span>
                             </a>
-                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $project.Id "method" $.deleteMethod "deleteUrl" (urlfor "ProjectController.DeleteProject" ":id" $project.Id) ) }}
+                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $project.ID "method" $.deleteMethod "deleteUrl" (urlfor "ProjectController.DeleteProject" ":id" $project.ID) ) }}
 
                         </td>
                     </tr>

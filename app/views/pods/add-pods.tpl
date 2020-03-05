@@ -34,7 +34,7 @@
                     </label>
                     <select class="form-control selectpicker show-tick" id="pods" name="pods" data-live-search="true" title="Choose one of the following..." data-dropup-auto="false" noneSelectedText="noneSelectedText">
                         {{range $unit := .units}}
-                            <option value="{{ $unit.Id }}" {{if compare ($unit.Id) ($.Pod.Units.Id) }} selected="selected" {{end}}>{{ $unit.Name }}</option>
+                            <option value="{{ $unit.ID }}" {{if compare ($unit.ID) ($.Pod.Units.ID) }} selected="selected" {{end}}>{{ $unit.Name }}</option>
                         {{ end }}
                     </select>
                     {{ template "base/form-valid.tpl" .Errors.Units }}

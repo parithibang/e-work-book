@@ -10,10 +10,10 @@ import (
 
 // Podvalidate validate the pod create
 func Podvalidate(req *http.Request) (validation.Validation, models.Pods) {
-	unitId, _ := strconv.Atoi(req.FormValue("pods"))
+	unitID, _ := strconv.Atoi(req.FormValue("pods"))
 
 	selectedUnit := models.Units{
-		Id: unitId,
+		ID: unitID,
 	}
 
 	pod := models.Pods{
@@ -25,7 +25,7 @@ func Podvalidate(req *http.Request) (validation.Validation, models.Pods) {
 	valid := validation.Validation{}
 	valid.Valid(&pod)
 
-	if unitId == 0 {
+	if unitID == 0 {
 		valid.SetError("Units", "Unit Should be selected")
 	}
 

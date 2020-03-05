@@ -6,7 +6,7 @@ import (
 
 // UsersProjects Model Struct
 type UsersProjects struct {
-	Id         int       `orm:"auto"`
+	ID         int       `orm:"pk;auto;column(id)"`
 	Projects   *Projects `orm:"rel(fk);column(project_id)"`
 	IsActive   int       `orm:"TINYINT(1);default(1)"`
 	Users      *Users    `orm:"rel(fk);column(user_id)"`
@@ -32,10 +32,10 @@ func (usersProject *UsersProjects) GetUserAssignedProjects(name string, limit, p
 }
 
 // GetTotalWorkPercentageOfUser to get the list of user assigned projects
-func (usersProject *UsersProjects) GetTotalWorkPercentageOfUser(userId int) orm.ParamsList {
+func (usersProject *UsersProjects) GetTotalWorkPercentageOfUser(userID int) orm.ParamsList {
 	o := orm.NewOrm()
 	var list orm.ParamsList
-	o.Raw("SELECT SUM(work_percentage) AS percentage FROM wb_users_projects where user_id =? and is_active=?", userId, 1).ValuesFlat(&list)
+	o.Raw("SELECT SUM(work_percentage) AS percentage FROM wb_users_projects where user_id =? and is_active=?", userID, 1).ValuesFlat(&list)
 
 	return list
 }

@@ -43,16 +43,16 @@
                         <td>{{$pod.Name}}</td>
                         <td>{{$pod.Units.Name}}</td>
                         <td>
-                            <a href="{{ urlfor "PodController.EditPod" ":id" $pod.Id}}">
+                            <a href="{{ urlfor "PodController.EditPod" ":id" $pod.ID}}">
                                 <span class="button-edit">Edit<i class="fa fa-edit"></i>
                                 </span>
                             </a>
                             <a href="#">
-                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $pod.Id}}">Delete
+                                <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $pod.ID}}">Delete
                                     <i class="fa fa-trash"></i>
                                 </span>
                             </a>
-                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $pod.Id "method" $.deleteMethod "deleteUrl" (urlfor "PodController.DeletePod" ":id" $pod.Id) ) }}
+                            {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $pod.ID "method" $.deleteMethod "deleteUrl" (urlfor "PodController.DeletePod" ":id" $pod.ID) ) }}
 
                         </td>
                     </tr>

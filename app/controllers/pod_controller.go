@@ -11,7 +11,7 @@ import (
 	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// PodController doc
+// PodController Controller actions for pods
 type PodController struct {
 	BaseController
 }
@@ -83,9 +83,9 @@ func (c *PodController) CreatePod() {
 // EditPod edit form for team module
 func (c *PodController) EditPod() {
 	flash := beego.NewFlash()
-	podId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	podID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	o := orm.NewOrm()
-	pod := models.Pods{Id: podId}
+	pod := models.Pods{ID: podID}
 	err := o.Read(&pod)
 
 	if err != nil {
@@ -102,17 +102,17 @@ func (c *PodController) EditPod() {
 	c.TplName = "pods/add-pods.tpl"
 }
 
-// UpdateTeam to update the team module
+// UpdatePod to update the pod module
 func (c *PodController) UpdatePod() {
 	o := orm.NewOrm()
-	podId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
-	pod := models.Pods{Id: podId}
+	podID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	pod := models.Pods{ID: podID}
 	o.Read(&pod)
 	units := new(models.Units).GetUnits()
 	c.FormParsing()
 	req := c.Ctx.Request
 	valid, updatedPod := validations.Podvalidate(req)
-	updatedPod.Id = podId
+	updatedPod.ID = podID
 
 	if !c.CheckErrors(valid, updatedPod) {
 		flash := beego.NewFlash()
@@ -136,10 +136,10 @@ func (c *PodController) UpdatePod() {
 // DeletePod to delete pod
 func (c *PodController) DeletePod() {
 	o := orm.NewOrm()
-	podId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	podID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	flash := beego.NewFlash()
 
-	_, err := o.QueryTable(models.Pods{}).Filter("id", podId).Update(orm.Params{
+	_, err := o.QueryTable(models.Pods{}).Filter("id", podID).Update(orm.Params{
 		"is_active": 0,
 	})
 

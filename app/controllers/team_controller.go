@@ -3,15 +3,15 @@ package controllers
 import (
 	"strconv"
 
-	"github.com/parithibang/e-work-book/app/models"
-	"github.com/parithibang/e-work-book/app/validations"
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 	"github.com/astaxie/beego/utils/pagination"
 	"github.com/astaxie/beego/validation"
+	"github.com/parithibang/e-work-book/app/models"
+	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// TeamController doc
+// TeamController Controller actions for teams
 type TeamController struct {
 	BaseController
 }
@@ -83,9 +83,9 @@ func (c *TeamController) CreateTeam() {
 // EditTeam edit form for team module
 func (c *TeamController) EditTeam() {
 	flash := beego.NewFlash()
-	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	teamID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	o := orm.NewOrm()
-	team := models.Teams{Id: teamId}
+	team := models.Teams{ID: teamID}
 	err := o.Read(&team)
 
 	if err != nil {
@@ -105,14 +105,14 @@ func (c *TeamController) EditTeam() {
 // UpdateTeam to update the team module
 func (c *TeamController) UpdateTeam() {
 	o := orm.NewOrm()
-	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
-	team := models.Teams{Id: teamId}
+	teamID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	team := models.Teams{ID: teamID}
 	o.Read(&team)
 	pods := new(models.Pods).GetPods()
 	c.FormParsing()
 	req := c.Ctx.Request
 	valid, updatedTeam := validations.Teamvalidate(req)
-	updatedTeam.Id = teamId
+	updatedTeam.ID = teamID
 
 	if !c.CheckErrors(valid, updatedTeam) {
 		flash := beego.NewFlash()
@@ -136,10 +136,10 @@ func (c *TeamController) UpdateTeam() {
 // DeleteTeam to delete team
 func (c *TeamController) DeleteTeam() {
 	o := orm.NewOrm()
-	teamId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	teamID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	flash := beego.NewFlash()
 
-	_, err := o.QueryTable(models.Teams{}).Filter("id", teamId).Update(orm.Params{
+	_, err := o.QueryTable(models.Teams{}).Filter("id", teamID).Update(orm.Params{
 		"is_active": 0,
 	})
 

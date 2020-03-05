@@ -6,7 +6,7 @@ import (
 
 // Users Model Struct
 type Users struct {
-	Id        int         `orm:"auto"`
+	ID        int         `orm:"pk;auto;column(id)"`
 	FirstName string      `orm:"size(255)" valid:"Required"`
 	LastName  string      `orm:"size(255)"`
 	UserName  string      `orm:"size(255)" valid:"Email; MaxSize(100)"`
