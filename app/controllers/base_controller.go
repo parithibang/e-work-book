@@ -4,7 +4,7 @@ import (
 	"github.com/astaxie/beego"
 )
 
-// BaseController doc
+// BaseController Controller for common setup
 type BaseController struct {
 	beego.Controller
 }

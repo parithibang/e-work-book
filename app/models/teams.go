@@ -4,7 +4,7 @@ import "github.com/astaxie/beego/orm"
 
 // Teams Model Struct
 type Teams struct {
-	Id       int    `orm:"auto"`
+	ID       int    `orm:"pk;auto;column(id)"`
 	Name     string `orm:"size(255)" valid:"Required"`
 	IsActive int    `orm:"default(1)"`
 	Pods     *Pods  `orm:"rel(fk);column(pod_id);null"`

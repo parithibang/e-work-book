@@ -4,7 +4,7 @@ import "github.com/astaxie/beego/orm"
 
 // Units Model Struct
 type Units struct {
-	Id       int     `orm:"auto"`
+	ID       int     `orm:"pk;auto;column(id)"`
 	Name     string  `orm:"size(255)"`
 	IsActive int     `orm:"default(1)"`
 	Pods     []*Pods `orm:"reverse(many);null"`

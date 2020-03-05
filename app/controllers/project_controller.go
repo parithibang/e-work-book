@@ -11,7 +11,7 @@ import (
 	"github.com/parithibang/e-work-book/app/validations"
 )
 
-// ProjectController doc
+// ProjectController Controller actions for projects
 type ProjectController struct {
 	BaseController
 }
@@ -79,9 +79,9 @@ func (c *ProjectController) CreateProject() {
 // EditProject edit form for project module
 func (c *ProjectController) EditProject() {
 	flash := beego.NewFlash()
-	projectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	projectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	o := orm.NewOrm()
-	project := models.Projects{Id: projectId}
+	project := models.Projects{ID: projectID}
 	err := o.Read(&project)
 
 	if err != nil {
@@ -99,13 +99,13 @@ func (c *ProjectController) EditProject() {
 // UpdateProject to update the project module
 func (c *ProjectController) UpdateProject() {
 	o := orm.NewOrm()
-	projectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
-	project := models.Projects{Id: projectId}
+	projectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	project := models.Projects{ID: projectID}
 	o.Read(&project)
 	c.FormParsing()
 	req := c.Ctx.Request
 	valid, updatedProject := validations.Projectvalidate(req)
-	updatedProject.Id = projectId
+	updatedProject.ID = projectID
 
 	if !c.CheckErrors(valid, updatedProject) {
 		flash := beego.NewFlash()
@@ -128,10 +128,10 @@ func (c *ProjectController) UpdateProject() {
 // DeleteProject to delete project
 func (c *ProjectController) DeleteProject() {
 	o := orm.NewOrm()
-	projectId, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	projectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	flash := beego.NewFlash()
 
-	_, err := o.QueryTable(models.Projects{}).Filter("id", projectId).Update(orm.Params{
+	_, err := o.QueryTable(models.Projects{}).Filter("id", projectID).Update(orm.Params{
 		"is_active": 0,
 	})
 

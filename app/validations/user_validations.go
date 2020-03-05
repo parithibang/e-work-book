@@ -10,11 +10,11 @@ import (
 
 // Uservalidate validate the user create
 func Uservalidate(req *http.Request) (validation.Validation, models.Users) {
-	podId, _ := strconv.Atoi(req.FormValue("pods"))
+	podID, _ := strconv.Atoi(req.FormValue("pods"))
 	isPodLead, _ := strconv.Atoi(req.FormValue("is-pod-lead"))
 
 	selectedPod := models.Pods{
-		Id: podId,
+		ID: podID,
 	}
 
 	user := models.Users{
@@ -30,7 +30,7 @@ func Uservalidate(req *http.Request) (validation.Validation, models.Users) {
 	valid := validation.Validation{}
 	valid.Valid(&user)
 
-	if podId == 0 {
+	if podID == 0 {
 		valid.SetError("Pods", "Pod Should be selected")
 	}
 

@@ -4,7 +4,7 @@ import "github.com/astaxie/beego/orm"
 
 // Pods Model Struct
 type Pods struct {
-	Id       int         `orm:"auto"`
+	ID       int         `orm:"pk;auto;column(id)"`
 	Name     string      `orm:"size(255)" valid:"Required"`
 	Users    []*Users    `orm:"reverse(many);null"`
 	IsActive int         `orm:"default(1)"`

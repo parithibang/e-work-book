@@ -11,18 +11,18 @@ import (
 
 // UserProjectvalidate validate the user create
 func UserProjectvalidate(req *http.Request) (validation.Validation, models.UsersProjects) {
-	userId, _ := strconv.Atoi(req.FormValue("user"))
-	projectId, _ := strconv.Atoi(req.FormValue("project"))
+	userID, _ := strconv.Atoi(req.FormValue("user"))
+	projectID, _ := strconv.Atoi(req.FormValue("project"))
 	percentage, _ := strconv.ParseFloat(req.FormValue("work-percentage"), 64)
 	percentageRoundOff := math.Floor(percentage*float64(100.00)) / float64(100.00)
 	maxPercentage := 100.00
 
 	selectedUser := models.Users{
-		Id: userId,
+		ID: userID,
 	}
 
 	selectedProject := models.Projects{
-		Id: projectId,
+		ID: projectID,
 	}
 
 	userProjects := models.UsersProjects{
@@ -35,10 +35,10 @@ func UserProjectvalidate(req *http.Request) (validation.Validation, models.Users
 	valid := validation.Validation{}
 	valid.Valid(&userProjects)
 
-	if userId == 0 {
+	if userID == 0 {
 		valid.SetError("User", "User Should be selected")
 	}
-	if projectId == 0 {
+	if projectID == 0 {
 		valid.SetError("Project", "Project Should be selected")
 	}
 

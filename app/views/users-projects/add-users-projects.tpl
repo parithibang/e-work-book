@@ -37,7 +37,7 @@
                     <label for="user">Users*</label>
                     <select class="form-control selectpicker show-tick" id="user" name="user" data-live-search="true" title="Choose one of the following..." data-dropup-auto="false" noneselectedtext="noneSelectedText">
                         {{range $user := .users}}
-                            <option value="{{ $user.Id }}" {{if compare ($user.Id) ($.UserProjects.Users.Id) }} selected="selected" {{end}}>{{ $user.FullName }}</option>
+                            <option value="{{ $user.ID }}" {{if compare ($user.ID) ($.UserProjects.Users.ID) }} selected="selected" {{end}}>{{ $user.FullName }}</option>
                         {{ end }}
                     </select>
                     {{ template "base/form-valid.tpl" .Errors.User }}
@@ -48,7 +48,7 @@
                     <label for="project">Projects*</label>
                     <select class="form-control selectpicker show-tick" id="project" name="project" data-live-search="true" title="Choose one of the following..." data-dropup-auto="false" noneselectedtext="noneSelectedText">
                         {{range $project := .projects}}
-                            <option value="{{ $project.Id }}" {{if compare ($project.Id) ($.UserProjects.Projects.Id) }} selected="selected" {{end}}>{{ $project.Name }}</option>
+                            <option value="{{ $project.ID }}" {{if compare ($project.ID) ($.UserProjects.Projects.ID) }} selected="selected" {{end}}>{{ $project.Name }}</option>
                         {{ end }}
                     </select>
                     {{ template "base/form-valid.tpl" .Errors.Project }}
