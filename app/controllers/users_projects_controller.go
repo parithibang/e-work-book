@@ -56,7 +56,7 @@ func (c *UsersProjectsController) CreateUserProjectDetail() {
 		percentage := fmt.Sprintf("%v", userPercentage[0])
 		percentageFloat, _ := strconv.ParseFloat(percentage, 64)
 		displayUser := models.Users{ID: userProjects.Users.ID}
-		o.Read(&displayUser)
+		_ = o.Read(&displayUser)
 
 		if percentageFloat > 100.00 {
 			flash.Warning("%s is allocated with %.2f%s of work", displayUser.FullName(), percentageFloat, "%")
@@ -111,7 +111,7 @@ func (c *UsersProjectsController) UpdateUserProjects() {
 	users := new(models.Users).GetUsers()
 	userProjectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	userProject := models.UsersProjects{ID: userProjectID}
-	o.Read(&userProject)
+	_ = o.Read(&userProject)
 	req := c.Ctx.Request
 	valid, updatedUserProject := validations.UserProjectvalidate(req)
 	updatedUserProject.ID = userProjectID
@@ -124,7 +124,7 @@ func (c *UsersProjectsController) UpdateUserProjects() {
 		percentage := fmt.Sprintf("%v", userPercentage[0])
 		percentageFloat, _ := strconv.ParseFloat(percentage, 64)
 		displayUser := models.Users{ID: updatedUserProject.Users.ID}
-		o.Read(&displayUser)
+		_ = o.Read(&displayUser)
 
 		if percentageFloat > 100.00 {
 			flash.Warning("%s is allocated with %.2f%s of work", displayUser.FullName(), percentageFloat, "%")

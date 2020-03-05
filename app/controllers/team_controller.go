@@ -107,7 +107,7 @@ func (c *TeamController) UpdateTeam() {
 	o := orm.NewOrm()
 	teamID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	team := models.Teams{ID: teamID}
-	o.Read(&team)
+	_ = o.Read(&team)
 	pods := new(models.Pods).GetPods()
 	c.FormParsing()
 	req := c.Ctx.Request

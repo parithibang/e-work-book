@@ -17,7 +17,7 @@ func (project *Projects) GetAllProjects(limit, page int) ([]*Projects, int64) {
 	o := orm.NewOrm()
 	setter := o.QueryTable(Projects{}).Filter("is_active", 1).OrderBy("id")
 	count, _ := setter.Count()
-	setter.Limit(limit, (page-1)*limit).All(&projects)
+	_, _ = setter.Limit(limit, (page-1)*limit).All(&projects)
 
 	return projects, count
 }
@@ -26,6 +26,6 @@ func (project *Projects) GetAllProjects(limit, page int) ([]*Projects, int64) {
 func (project *Projects) GetProjects() []*Projects {
 	var projects []*Projects
 	o := orm.NewOrm()
-	o.QueryTable(Projects{}).OrderBy("name").All(&projects, "id", "name")
+	_, _ = o.QueryTable(Projects{}).OrderBy("name").All(&projects, "id", "name")
 	return projects
 }

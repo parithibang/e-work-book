@@ -17,7 +17,12 @@ func db() {
 	dbCharset := beego.AppConfig.String("db_charset")
 	dbName := beego.AppConfig.String("db_name")
 
-	orm.RegisterDataBase(dbAlias, "mysql", dbUserName+":"+dbPassword+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset="+dbCharset, 30)
+	err := orm.RegisterDataBase(dbAlias, "mysql", dbUserName+":"+dbPassword+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset="+dbCharset, 30)
+
+	if err != nil {
+		beego.Error("Register Database Error:" + err.Error())
+		panic(err.Error())
+	}
 
 	isDev := (beego.AppConfig.String("runmode") == "dev")
 

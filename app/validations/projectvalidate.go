@@ -15,7 +15,7 @@ func Projectvalidate(req *http.Request) (validation.Validation, models.Projects)
 	}
 
 	valid := validation.Validation{}
-	valid.Valid(&project)
+	_, _ = valid.Valid(&project)
 
 	return valid, project
 }

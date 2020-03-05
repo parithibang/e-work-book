@@ -33,7 +33,7 @@ func UserProjectvalidate(req *http.Request) (validation.Validation, models.Users
 	}
 
 	valid := validation.Validation{}
-	valid.Valid(&userProjects)
+	_, _ = valid.Valid(&userProjects)
 
 	if userID == 0 {
 		valid.SetError("User", "User Should be selected")

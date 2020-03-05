@@ -5,8 +5,8 @@ import (
 )
 
 func functionsForView() {
-	beego.AddFuncMap("calculate", calculate)
-	beego.AddFuncMap("dynamicMap", dynamicMap)
+	_ = beego.AddFuncMap("calculate", calculate)
+	_ = beego.AddFuncMap("dynamicMap", dynamicMap)
 }
 
 // calculate used for calculation logic in views

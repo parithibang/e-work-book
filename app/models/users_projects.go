@@ -26,7 +26,7 @@ func (usersProject *UsersProjects) GetUserAssignedProjects(name string, limit, p
 	count, _ := setter.SetCond(cond).Count()
 	// setter.SetCond(cond).All(&usersProjects)
 
-	setter.SetCond(cond).Limit(limit, (page-1)*limit).All(&usersProjects)
+	_, _ = setter.SetCond(cond).Limit(limit, (page-1)*limit).All(&usersProjects)
 
 	return usersProjects, count
 }
@@ -35,7 +35,7 @@ func (usersProject *UsersProjects) GetUserAssignedProjects(name string, limit, p
 func (usersProject *UsersProjects) GetTotalWorkPercentageOfUser(userID int) orm.ParamsList {
 	o := orm.NewOrm()
 	var list orm.ParamsList
-	o.Raw("SELECT SUM(work_percentage) AS percentage FROM wb_users_projects where user_id =? and is_active=?", userID, 1).ValuesFlat(&list)
+	_, _ = o.Raw("SELECT SUM(work_percentage) AS percentage FROM wb_users_projects where user_id =? and is_active=?", userID, 1).ValuesFlat(&list)
 
 	return list
 }
