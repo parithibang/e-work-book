@@ -33,6 +33,10 @@ lint: ## Lint the code
 security-check: ## Inspect code for security vulnerabilities
 	gosec ./...
 
+.PHONY: build
+build: ## Inspect code for security vulnerabilities
+	go build -o eworkbook main.go
+
 .PHONY: backup-db
 backup-db: ## To create a MySQL Dump
 	sh backup/create-mysql-dump.sh
