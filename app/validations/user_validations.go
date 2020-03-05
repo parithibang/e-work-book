@@ -28,7 +28,7 @@ func Uservalidate(req *http.Request) (validation.Validation, models.Users) {
 	}
 
 	valid := validation.Validation{}
-	valid.Valid(&user)
+	_, _ = valid.Valid(&user)
 
 	if podID == 0 {
 		valid.SetError("Pods", "Pod Should be selected")

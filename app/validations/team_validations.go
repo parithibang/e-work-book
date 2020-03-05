@@ -23,7 +23,7 @@ func Teamvalidate(req *http.Request) (validation.Validation, models.Teams) {
 	}
 
 	valid := validation.Validation{}
-	valid.Valid(&team)
+	_, _ = valid.Valid(&team)
 
 	if podID == 0 {
 		valid.SetError("Pods", "Pod Should be selected")

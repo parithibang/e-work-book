@@ -109,7 +109,7 @@ func (c *UserController) UpdateUser() {
 	o := orm.NewOrm()
 	userID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	user := models.Users{ID: userID}
-	o.Read(&user)
+	_ = o.Read(&user)
 	pods := new(models.Pods).GetPods()
 	c.FormParsing()
 	req := c.Ctx.Request

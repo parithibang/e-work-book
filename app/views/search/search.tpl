@@ -69,17 +69,17 @@
                             <td>{{ $userproject.Projects.Name }}</td>
                             <td>{{ $userproject.Percentage }}</td>
                             <td>
-                                <a href="{{ urlfor "UsersProjectsController.EditUserProjects" ":id" $userproject.Id}}">
+                                <a href="{{ urlfor "UsersProjectsController.EditUserProjects" ":id" $userproject.ID}}">
                                     <span class="button-edit">Edit
                                         <i class="fa fa-edit"></i>
                                     </span>
                                 </a>
                                 <a href="#">
-                                    <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $userproject.Id}}">Delete
+                                    <span class="button-delete" data-toggle="modal" data-target="#myModal{{ $userproject.ID}}">Delete
                                         <i class="fa fa-trash"></i>
                                     </span>
                                 </a>
-                                {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $userproject.Id "method" $.deleteMethod "deleteUrl" (urlfor "UsersProjectsController.DeleteUserProject" ":id" $userproject.Id) "requestParams"  $.requestParams) }}
+                                {{ template "base/delete-record.tpl" (dynamicMap  "RecordId" $userproject.ID "method" $.deleteMethod "deleteUrl" (urlfor "UsersProjectsController.DeleteUserProject" ":id" $userproject.ID) "requestParams"  $.requestParams) }}
                             </td>
                         </tr>
                     {{end}}

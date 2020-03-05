@@ -14,6 +14,6 @@ type Units struct {
 func (unit *Units) GetUnits() []*Units {
 	var units []*Units
 	o := orm.NewOrm()
-	o.QueryTable(Units{}).OrderBy("name").All(&units, "id", "name")
+	_, _ = o.QueryTable(Units{}).OrderBy("name").All(&units, "id", "name")
 	return units
 }

@@ -16,7 +16,7 @@ func (team *Teams) GetAllTeams(limit, page int) ([]*Teams, int64) {
 	o := orm.NewOrm()
 	setter := o.QueryTable(Teams{}).Filter("is_active", 1).OrderBy("id").RelatedSel("Pods")
 	count, _ := setter.Count()
-	setter.Limit(limit, (page-1)*limit).All(&teams)
+	_, _ = setter.Limit(limit, (page-1)*limit).All(&teams)
 
 	return teams, count
 }

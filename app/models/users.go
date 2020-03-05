@@ -25,7 +25,7 @@ func (user *Users) GetAllUsers(limit, page int) ([]*Users, int64) {
 	o := orm.NewOrm()
 	setter := o.QueryTable(Users{}).Filter("is_active", 1).OrderBy("id").RelatedSel("Pods")
 	count, _ := setter.Count()
-	setter.Limit(limit, (page-1)*limit).All(&users)
+	_, _ = setter.Limit(limit, (page-1)*limit).All(&users)
 
 	return users, count
 }
@@ -34,7 +34,7 @@ func (user *Users) GetAllUsers(limit, page int) ([]*Users, int64) {
 func (user *Users) GetUsers() []*Users {
 	var users []*Users
 	o := orm.NewOrm()
-	o.QueryTable(Users{}).OrderBy("id").All(&users, "id", "first_name", "last_name")
+	_, _ = o.QueryTable(Users{}).OrderBy("id").All(&users, "id", "first_name", "last_name")
 	return users
 }
 

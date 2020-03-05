@@ -101,7 +101,7 @@ func (c *ProjectController) UpdateProject() {
 	o := orm.NewOrm()
 	projectID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	project := models.Projects{ID: projectID}
-	o.Read(&project)
+	_ = o.Read(&project)
 	c.FormParsing()
 	req := c.Ctx.Request
 	valid, updatedProject := validations.Projectvalidate(req)

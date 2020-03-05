@@ -107,7 +107,7 @@ func (c *PodController) UpdatePod() {
 	o := orm.NewOrm()
 	podID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
 	pod := models.Pods{ID: podID}
-	o.Read(&pod)
+	_ = o.Read(&pod)
 	units := new(models.Units).GetUnits()
 	c.FormParsing()
 	req := c.Ctx.Request

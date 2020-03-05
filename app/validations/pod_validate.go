@@ -23,7 +23,7 @@ func Podvalidate(req *http.Request) (validation.Validation, models.Pods) {
 	}
 
 	valid := validation.Validation{}
-	valid.Valid(&pod)
+	_, _ = valid.Valid(&pod)
 
 	if unitID == 0 {
 		valid.SetError("Units", "Unit Should be selected")
