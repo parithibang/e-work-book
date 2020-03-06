@@ -35,7 +35,7 @@ security-check: ## Inspect code for security vulnerabilities
 
 .PHONY: build
 build: ## Inspect code for security vulnerabilities
-	go build -o eworkbook main.go
+	go build -o e-work-book main.go
 
 .PHONY: backup-db
 backup-db: ## To create a MySQL Dump
