@@ -4,7 +4,6 @@ import (
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
 
-	// Register mysql driver
 	_ "github.com/go-sql-driver/mysql"
 )
 
