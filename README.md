@@ -1,5 +1,6 @@
 # eWorkBook
 
+[![Build Status](https://travis-ci.org/parithibang/e-work-book.svg)](https://travis-ci.org/parithibang/e-work-book)
 [![Go Report Card](https://goreportcard.com/badge/github.com/parithibang/e-work-book?style=flat-square)](https://goreportcard.com/report/github.com/parithibang/e-work-book)
 [![GitHub contributors](https://img.shields.io/github/contributors/parithibang/e-work-book.svg?style=plastic&color=blue)](https://GitHub.com/parithibang/e-work-book/graphs/contributors/)
 ![Last Commit](https://img.shields.io/github/last-commit/parithibang/e-work-book.svg?style=plastic)
