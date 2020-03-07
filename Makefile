@@ -31,7 +31,7 @@ vet: ## Vet the code
 
 .PHONY: lint
 lint: ## Lint the code
-	golint -set_exit_status ./{app,setup}/...
+	golint -set_exit_status ./...
 
 .PHONY: security-check
 security-check: ## Inspect code for security vulnerabilities
