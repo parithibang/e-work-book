@@ -1,8 +1,8 @@
 language: go
 go: 1.13.x
 
-before_install:
-  - make install
+# before_install:
+#   - make install
 
 notifications:
   email: false
@@ -10,6 +10,8 @@ notifications:
 matrix:
   include:
     - stage: vet
+      before_script:
+        - make install
       script:
         - make vet
     - stage: lint
