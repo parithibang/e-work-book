@@ -1,26 +1,16 @@
 language: go
 go: 1.13.x
 
-# before_install:
-#   - make install
+before_install:
+  - make install
 
 notifications:
   email: false
 
 matrix:
   include:
-    - stage: vet
-      before_script:
-        - make install
+    - stage: Build
       script:
         - make vet
-    - stage: lint
-      before_script:
-        - go get golang.org/x/lint/golint
-      script:
         - make lint
-    - stage: security-check
-      before_script:
-        - go get github.com/securego/gosec/cmd/gosec
-      script:
         - make security-check
