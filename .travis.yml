@@ -1,6 +1,6 @@
 language: go
 
-_go_install: &_go_install
+before_install:
   - make install
 
 notifications:
@@ -8,7 +8,12 @@ notifications:
 
 matrix:
   include:
-    - install: *_go_install
+    - stage: vet
       script:
-        - make
         - make vet
+    - stage: lint
+      script:
+        - make lint
+    - stage: security-check
+      script:
+        - make security-check

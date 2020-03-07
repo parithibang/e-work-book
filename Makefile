@@ -25,6 +25,10 @@ run: ## Run the beggo application in  http://localhost:8080
 install: ## install all project dependency
 	go get ./...
 
+.PHONY: vet
+vet: ## Vet the code
+	go vet ./...
+
 .PHONY: lint
 lint: ## Lint the code
 	golint -set_exit_status ./{app,setup}/...
