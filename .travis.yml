@@ -1,0 +1,14 @@
+language: go
+
+_go_install: &_go_install
+  - make install
+
+notifications:
+  email: true
+
+matrix:
+  include:
+    - install: *_go_install
+      script:
+        - make
+        - make vet
