@@ -12,8 +12,12 @@ matrix:
       script:
         - make vet
     - stage: lint
+      before_script:
+        - go get golang.org/x/lint/golint
       script:
         - make lint
     - stage: security-check
+      before_script:
+        - go get github.com/securego/gosec/cmd/gosec
       script:
         - make security-check
