@@ -43,7 +43,7 @@ These are the core modules
 
 Users are EHI employees. There are 2 user roles
 
-- Pod Leads
+- Pod Leads 
 - Employees
 
 This application will be accessible only to Pod leads. Pod lead created or uploads employee data.
